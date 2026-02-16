@@ -1,5 +1,4 @@
 import streamlit as st
-import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pandas as pd
 import numpy as np
@@ -32,15 +31,20 @@ def preprocess_text(words):
     #Convert to lowercase
     words = words.lower()
 
-    # #initialize Stopwords
-    # stop_words = set(stopwords.words('english'))
+    #initialize Stopwords
+    stop_words = set(stopwords.words('english'))
 
     #Lemmatization
     lemmatizer = nltk.WordNetLemmatizer()
-    words = lemmatizer.lemmatize(words)
-    words = ''.join(words)
+    processed_words = []
+    for word in words.split():
+        if word not in stop_words:
+            lemmatized_word = lemmatizer.lemmatize(word)
+            processed_words.append(lemmatized_word)
 
-    return words
+    processed_words = ' '.join(processed_words)
+
+    return processed_words
 
 
 
@@ -90,6 +94,5 @@ if st.button("Predict Sentiment"):
         st.write(f"Predicted Sentiment: {predicted_sentiment}")
     else:
         st.write("Please enter a tweet to analyze.")
-
 
 
