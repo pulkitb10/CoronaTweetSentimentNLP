@@ -3,7 +3,7 @@ from tensorflow.keras.models import load_model
 import pandas as pd
 import numpy as np
 import nltk
-from nltk.corpus import stopwords
+nltk.download('stopwords')
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
@@ -94,5 +94,6 @@ if st.button("Predict Sentiment"):
         st.write(f"Predicted Sentiment: {predicted_sentiment}")
     else:
         st.write("Please enter a tweet to analyze.")
+
 
 
