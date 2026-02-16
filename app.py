@@ -5,6 +5,7 @@ import numpy as np
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
+nltk.download('wordnet')
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
@@ -95,6 +96,7 @@ if st.button("Predict Sentiment"):
         st.write(f"Predicted Sentiment: {predicted_sentiment}")
     else:
         st.write("Please enter a tweet to analyze.")
+
 
 
 
